@@ -1,3 +1,8 @@
+# Inside storage/app/public folder create one folder (profile_photos)  to store the uploaded photos
+# and then link it to storage by typing command (php artisan storage:link)
+
+# Before running the project make sure you have setup your .env file for database and then migrate all the migration file to create all tables in database.
+
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
 
 <p align="center">
