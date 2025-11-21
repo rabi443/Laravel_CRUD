@@ -26,5 +26,16 @@
         <input type="file" id="profile_photo" name="profile_photo" accept="image/*"><br><br>
 
         <input type="submit" value="Add User">
+    </form>
+
+    @if ($errors->any())
+    <div style="color: red; margin-bottom: 20px;">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
 </body>
 </html>

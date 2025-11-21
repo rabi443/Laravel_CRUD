@@ -19,11 +19,7 @@
             <th>Action</th>
         </tr>
 
-        @php
-            $users = null;
-        @endphp
-
-        @if(empty($users))
+        @if($users->isEmpty())
             <tr>
                 <td colspan="7">No users found.</td>
             </tr>
@@ -35,10 +31,25 @@
                 <td>{{ $user->address }}</td>
                 <td>{{ $user->contact }}</td>
                 <td>{{ $user->email }}</td>
-                <td><img src="{{ asset('storage/' . $user->profile_photo) }}" alt="Profile Photo" width="100"></td>
                 <td>
-                    <a href="{{ route('edit', $user->id) }}">Edit</a> | 
-                    <a href="{{ route('delete', $user->id) }}" onclick="return confirm('do you want to delete yout profile photo?')">Delete</a>
+                    @if($user->profile_photo)
+                        <b><a href="{{ route('users.show', $user->id) }}" style="text-decoration: none; color: green;">view</a></b>
+                    @else
+                        <span>No Photo</span>
+                    @endif
+                </td>
+                <td>
+                    <b><a href="{{ route('users.edit', $user->id) }}" style="text-decoration: none;">Edit</a> | </b>
+
+                    <form action="{{ route('users.destroy', $user->id) }}" method="POST" style="display:inline;">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" onclick="return confirm('Do you want to delete your profile?')" style="background:none; border:none; color:red; cursor:pointer;">
+                           <b> Delete </b>
+                        </button>
+                    </form>
+
+                   
             </tr>
             @endforeach 
         @endif
@@ -46,5 +57,6 @@
     <button>
         <a href="{{ route('users.create') }}" style="text-decoration: none;">Add New User</a>
     </button>
+    
 </body>
 </html>
